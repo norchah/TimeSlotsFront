@@ -1,0 +1,46 @@
+{
+  "name": "time_slots",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --turbopack --experimental-https --experimental-https-key ./certs/localhost-key.pem --experimental-https-cert ./certs/localhost.pem",
+    "dev:https": "next dev --turbo --experimental-https --experimental-https-key ./certs/localhost-key.pem --experimental-https-cert ./certs/localhost.pem",
+    "build": "next build --turbopack",
+    "start": "next start",
+    "lint": "eslint"
+  },
+  "dependencies": {
+    "@headlessui/react": "^2.2.7",
+    "@heroui/avatar": "^2.2.20",
+    "@heroui/dropdown": "^2.3.24",
+    "@heroui/form": "^2.1.24",
+    "@heroui/input": "^2.4.25",
+    "@heroui/link": "^2.2.21",
+    "@heroui/modal": "^2.2.21",
+    "@heroui/navbar": "^2.2.22",
+    "@heroui/react": "^2.8.2",
+    "@heroui/system": "^2.4.20",
+    "@heroui/theme": "^2.4.20",
+    "axios": "^1.11.0",
+    "framer-motion": "^12.23.12",
+    "jose": "^6.0.13",
+    "jsonwebtoken": "^9.0.2",
+    "moment": "^2.30.1",
+    "next": "15.5.0",
+    "react": "19.1.0",
+    "react-big-calendar": "^1.19.4",
+    "react-dom": "19.1.0",
+    "zustand": "^5.0.8"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3",
+    "@tailwindcss/postcss": "^4.1.12",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "15.5.0",
+    "tailwindcss": "^4.1.12",
+    "typescript": "^5"
+  }
+}
