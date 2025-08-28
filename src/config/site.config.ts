@@ -4,6 +4,5 @@ export const siteConfig = {
   menuItems: [
     {href: '/booking', label: 'Записаться'},
     {href: '/timeslot', label: 'Создать'},
-    {href: '/about', label: 'О нас'},
   ]
 }

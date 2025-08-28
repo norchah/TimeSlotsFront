@@ -6,9 +6,9 @@ import {Form, Input} from "@heroui/react";
 import ApiClient from "@/api/api";
 import {useUserStore} from "@/stores/useUserStore";
 import {useRouter} from 'next/navigation'
-import ButtonSubmit from "@/components/ui/buttons/Button.base";
+import ButtonSubmit from "@/components/ui/buttons/button.base";
 
-export default function LoginForm() {
+export default function LoginForm({onClose}) {
   const router = useRouter();
   const [username, setUsername] = useState('');
   const addUser = useUserStore((state) => state.addUser);
@@ -22,7 +22,6 @@ export default function LoginForm() {
       router.push('/booking'); // Редирект на страницу записи
     }
   }
-
 
   return (
     <Form className="w-full max-w-xs items-center" onSubmit={handleSubmit}>
@@ -40,7 +39,7 @@ export default function LoginForm() {
           setUsername(e.target.value)
         }}
       />
-      <ButtonSubmit color="primary" className='mt-3' type='submit'>Войти</ButtonSubmit>
+      <ButtonSubmit color="primary" className='mt-3' type='submit' onPress={onClose}>Войти</ButtonSubmit>
     </Form>
   );
 }

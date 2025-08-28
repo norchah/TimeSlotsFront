@@ -1,12 +1,14 @@
 'use client';
-import {Navbar, NavbarBrand, NavbarContent, NavbarItem, Link} from "@heroui/react";
+import {Navbar, NavbarBrand, NavbarContent, NavbarItem, Link, useDisclosure, Button} from "@heroui/react";
 import Image from "next/image";
-import {usePathname} from "next/navigation";
 import {siteConfig} from "@/config/site.config";
 import {useUserStore} from "@/stores/useUserStore";
-import ButtonPrimary from "@/components/ui/buttons/Button.base";
 import UserMenu from "@/components/ui/user-menu/user-menu";
 import {useEffect, useState} from "react";
+import loginModal from "../common/modal/modal";
+import LoginModal from "../common/modal/modal";
+import AuthPage from "../../app/auth/page";
+import {layoutConfig} from "../../config/layout.config";
 
 export const Logo = () => {
   return (
@@ -21,67 +23,47 @@ export const Logo = () => {
 };
 
 export default function Header({style}) {
-  const pathname = usePathname()
   const [loading, setLoading] = useState(true);
   const isLoggedIn = useUserStore((state) => state.isLoggedIn)
+  const {isOpen, onOpen, onOpenChange, onClose} = useDisclosure();
 
   useEffect(() => {
     setLoading(false)
   }, [])
 
-
-  const getNavItems = () => {
-    return siteConfig.menuItems.map((item) => {
-      const isActive = item.href === pathname;
-      return (
-        <NavbarItem key={item.href} isActive>
-          <Link href={item.href}
-                color='foreground'
-                className={`
-            ${isActive ? 'text-blue-500' : 'text-foreground'}
-            border border-transparent
-            hover:text-blue-300 hover:border hover:border-blue-300
-            rounded-md transition-all
-            duration-200 px-3 py-1
-            `}>
-            {item.label}
-          </Link>
-        </NavbarItem>
-      )
-    })
-  }
-
   return (
-    <Navbar style={style}>
 
-      <NavbarBrand>
-        <Link href='/' className='gap-1 text-white'>
-          <Logo/>
+    <header
+      className={`flex w-full h-auto items-center justify-center min-h-[${layoutConfig.headerHeight}px] border-1`}>
+      <nav className='flex w-full max-w-[1024px] items-center justify-between gap-4 px-4'>
+        <div className='flex items-center gap-2'>
+          <Link href='/'>
+            <Logo/>
+          </Link>
           <p className="font-bold text-inherit">{siteConfig.title}</p>
-        </Link>
-      </NavbarBrand>
 
-      <NavbarContent className="hidden sm:flex gap-4 border-content" justify="center">
-        {getNavItems()}
-      </NavbarContent>
-      <NavbarContent justify="end">
-        {loading ? (
-          <NavbarItem className="hidden lg:flex">
-            <div className="animate-spin rounded-full h-6 w-6 border-t-2 border-b-2 border-blue-500"></div>
-          </NavbarItem>
-        ) : !isLoggedIn ? (
-          <NavbarItem className="hidden lg:flex">
-            <ButtonPrimary as={Link} href="/auth">
-              Войти
-            </ButtonPrimary>
-          </NavbarItem>
-        ) : (
-          <NavbarItem className="hidden lg:flex">
-            <UserMenu />
-          </NavbarItem>
-        )}
-      </NavbarContent>
-
-    </Navbar>
+        </div>
+        <div className='flex items-center'>
+          {loading ? (
+            <div className="hidden lg:flex">
+              <div className="animate-spin rounded-full h-6 w-6 border-t-2 border-b-2 border-blue-500"></div>
+            </div>
+          ) : !isLoggedIn ? (
+            <div className="lg:flex">
+              <Button color='primary' onPress={onOpen}>
+                Войти
+              </Button>
+            </div>
+          ) : (
+            <div className="lg:flex">
+              <UserMenu/>
+            </div>
+          )}
+        </div>
+      </nav>
+      <LoginModal isOpen={isOpen} onOpenChange={onOpenChange}>
+        <AuthPage/>
+      </LoginModal>
+    </header>
   );
 }

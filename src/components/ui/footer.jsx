@@ -5,8 +5,7 @@ import {layoutConfig} from "@/config/layout.config";
 export default function Footer() {
   return (
     <footer className={`flex justify-center items-center`}
-    style={{ height: `${layoutConfig.footerHeight}px` }}
-    >
+    style={{ height: `${layoutConfig.footerHeight}px` }}>
       <p>{siteConfig.description}</p>
     </footer>
   );

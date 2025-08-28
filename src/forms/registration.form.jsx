@@ -6,9 +6,9 @@ import {Form, Input} from "@heroui/react";
 import ApiClient from "@/api/api";
 import {useUserStore} from "@/stores/useUserStore";
 import {useRouter} from 'next/navigation'
-import ButtonSubmit from "@/components/ui/buttons/Button.base";
+import ButtonSubmit from "@/components/ui/buttons/button.base";
 
-export default function RegisterForm() {
+export default function RegisterForm({onClose}) {
   const router = useRouter();
   const [username, setUsername] = useState('');
   const addUser = useUserStore((state) => state.addUser);
@@ -40,7 +40,7 @@ export default function RegisterForm() {
           setUsername(e.target.value)
         }}
       />
-      <ButtonSubmit color="primary" className='mt-3' type='submit'>Зарегаться</ButtonSubmit>
+      <ButtonSubmit color="primary" className='mt-3' type='submit' onPress={onClose}>Зарегаться</ButtonSubmit>
     </Form>
   );
 }

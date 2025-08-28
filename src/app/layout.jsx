@@ -1,4 +1,3 @@
-import type {Metadata} from "next";
 import "./globals.css";
 import Header from "@/components/ui/header";
 import {Providers} from "@/app/providers";
@@ -6,17 +5,12 @@ import {siteConfig} from "@/config/site.config";
 import Footer from "@/components/ui/footer";
 import {layoutConfig} from "@/config/layout.config";
 
-
-export const metadata: Metadata = {
+export const metadata = {
   title: siteConfig.title,
   description: siteConfig.description,
 };
 
-export default function RootLayout({
-  children,
-  }: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({children}) {
   return (
     <html lang="en">
     <body
@@ -24,12 +18,10 @@ export default function RootLayout({
     >
     <Providers>
       <Header style={{ height: `${layoutConfig.headerHeight}px`}}/>
-      <main className={`flex flex-col justify-center items-center`}
-      style={{ height: `calc(100vh - ${layoutConfig.footerHeight}px - ${layoutConfig.headerHeight}px)` }}>
-      {/*// style={{ height: `calc(100vh - ${layoutConfig.footerHeight}px)` }}>*/}
+      <main style={{ height: `calc(100vh - ${layoutConfig.footerHeight}px - ${layoutConfig.headerHeight}px)` }}>
         {children}
       </main>
-      <Footer/>
+      <Footer />
     </Providers>
     </body>
     </html>
