@@ -1,6 +1,5 @@
 import { NextResponse } from 'next/server';
 import * as jose from 'jose';
-import {useUserStore} from "./stores/useUserStore";
 
 const JWT_SECRET = process.env.JWT_SECRET;
 
@@ -26,7 +25,7 @@ export function middleware(request) {
     // Проверяем доступ к маршрутам
 
 
-    // Защищаем /dashboard для specialist и company
+    // Защищаем /timeslot для specialist и company
     if (pathname.startsWith('/timeslot')) {
       if (!roles.includes('specialist') && !roles.includes('company')) {
         console.warn(`Access denied: User ${decoded.sub} lacks required role for /timeslot`);
@@ -41,7 +40,6 @@ export function middleware(request) {
         return NextResponse.redirect(new URL('/unauthorized', request.url));
       }
     }
-
     // Разрешаем доступ
     return NextResponse.next();
   } catch (error) {

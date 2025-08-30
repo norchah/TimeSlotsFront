@@ -12,7 +12,7 @@ export default function useLogout() {
       const api = new ApiClient();
       const response = await api.logout();
       clearUser(); // Очищаем Zustand и localStorage
-      router.push('/auth'); // Редирект на страницу логина
+      router.push('/'); // Редирект на страницу логина
     } catch (error) {
       console.error('Logout failed:', error);
       // Опционально: Показать уведомление об ошибке

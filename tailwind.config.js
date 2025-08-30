@@ -1,5 +1,6 @@
 // tailwind.config.js
 const {heroui} = require("@heroui/theme");
+const {layoutConfig} = require("./src/config/layout.config");
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -7,7 +8,9 @@ module.exports = {
     "./node_modules/@heroui/theme/dist/components/(avatar|dropdown|form|input|link|modal|navbar|menu|divider|popover|button|ripple|spinner).js"
 ],
   theme: {
-    extend: {},
+    extend: {
+
+    },
   },
   darkMode: "class",
   plugins: [heroui()],

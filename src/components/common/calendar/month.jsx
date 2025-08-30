@@ -34,8 +34,8 @@ export default function Month({todayDate, onClick}) {
   };
 
   return (
-    <section className="p-4 mx-auto h-[470px] max-w-[800px] outline">
-      <div className="flex items-baseline justify-around max-w-[500px] gap-5">
+    <section className="mx-auto h-[470px] max-w-[800px]">
+      <div className="flex items-baseline justify-around gap-5">
         <Button onPress={handlePrevMonth} variant="bordered">
           {prevMonth}
         </Button>
